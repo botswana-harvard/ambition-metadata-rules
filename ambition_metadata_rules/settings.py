@@ -21,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'yvnesm+cu1f)0oesr0hndkq2r^7u#wq_a3g%cfuagn5vq!&j&q'
-
+APP_NAME = 'ambition_metadata_rules'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -37,6 +37,23 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_crypto_fields.apps.AppConfig',
+    'django_revision.apps.AppConfig',
+    'edc_base.apps.AppConfig',
+    'edc_lab.apps.AppConfig',
+    'edc_label.apps.AppConfig',
+    'edc_appointment.apps.AppConfig',
+    'edc_visit_tracking.apps.AppConfig',
+    'edc_visit_schedule.apps.AppConfig',
+    'edc_protocol.apps.AppConfig',
+    'edc_identifier.apps.AppConfig',
+    'edc_timepoint.apps.AppConfig',
+    'edc_device.apps.AppConfig',
+    'edc_registration.apps.AppConfig',
+    'edc_reference.apps.AppConfig',
+    'ambition.apps.AppConfig',
+    'ambition_metadata_rules.apps.EdcMetadataAppConfig',
+    'ambition_metadata_rules.apps.AppConfig',
 ]
 
 MIDDLEWARE = [
@@ -113,7 +130,8 @@ USE_L10N = True
 
 USE_TZ = True
 
-
+KEY_PATH = os.path.join(BASE_DIR, 'crypto_fields')
+STATIC_ROOT = os.path.join(BASE_DIR, 'ambition_metadata_rules', 'static')
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
