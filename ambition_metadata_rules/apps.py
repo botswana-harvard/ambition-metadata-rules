@@ -10,4 +10,4 @@ if settings.APP_NAME == 'ambition_metadata_rules':
     from edc_metadata.apps import AppConfig as MetadataAppConfig
 
     class EdcMetadataAppConfig(MetadataAppConfig):
-        reason_field = {'bcpp_metadata_rules.subjectvisit': 'reason'}
+        reason_field = {'ambition_metadata_rules.subjectvisit': 'reason'}

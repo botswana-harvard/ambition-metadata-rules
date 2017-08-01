@@ -6,6 +6,9 @@ from edc_metadata.rules.decorators import register
 from edc_metadata.rules.predicate import P
 
 
+app_label = 'ambition_subject'
+
+
 @register()
 class PrnModelCrfRuleGroup(CrfRuleGroup):
 
@@ -82,5 +85,5 @@ class PrnModelCrfRuleGroup(CrfRuleGroup):
         target_models=['deathreporttmg2'])
 
     class Meta:
-        app_label = 'ambition_subject'
-        source_model = 'ambition_subject.prnmodel'
+        app_label = 'ambition_metadata_rules'
+        source_model = f'{app_label}.prnmodel'

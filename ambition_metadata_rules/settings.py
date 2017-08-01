@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+import sys
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -51,7 +52,9 @@ INSTALLED_APPS = [
     'edc_device.apps.AppConfig',
     'edc_registration.apps.AppConfig',
     'edc_reference.apps.AppConfig',
-    'ambition.apps.AppConfig',
+    'ambition_labs.apps.AppConfig',
+    'ambition_reference.apps.AppConfig',
+    'ambition_visit_schedule.apps.AppConfig',
     'ambition_metadata_rules.apps.EdcMetadataAppConfig',
     'ambition_metadata_rules.apps.AppConfig',
 ]
@@ -136,3 +139,23 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'ambition_metadata_rules', 'static')
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+if 'test' in sys.argv and 'mysql' not in DATABASES.get('default').get('ENGINE'):
+    MIGRATION_MODULES = {
+        "django_crypto_fields": None,
+        "edc_call_manager": None,
+        "edc_appointment": None,
+        "edc_call_manager": None,
+        "edc_consent": None,
+        "edc_death_report": None,
+        "edc_export": None,
+        "edc_identifier": None,
+        "edc_lab": None,
+        "edc_metadata": None,
+        "edc_rule_groups": None,
+        "edc_reference": None,
+        "edc_registration": None,
+        "edc_sync_files": None,
+        "edc_sync": None,
+        "ambition_subject": None,
+        "ambition_screening": None}

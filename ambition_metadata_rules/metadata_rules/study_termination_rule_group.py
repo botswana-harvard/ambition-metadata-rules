@@ -4,6 +4,8 @@ from edc_metadata.rules.crf import CrfRuleGroup
 from edc_metadata.rules.decorators import register
 from edc_metadata.rules.predicate import P
 
+app_label = 'ambition_subject'
+
 
 @register()
 class StudyTerminationConclusionCrfRuleGroup(CrfRuleGroup):
@@ -15,5 +17,5 @@ class StudyTerminationConclusionCrfRuleGroup(CrfRuleGroup):
         target_models=['protocoldeviationviolation'])
 
     class Meta:
-        app_label = 'ambition_subject'
-        source_model = 'ambition_subject.studyterminationconclusion'
+        app_label = 'ambition_metadata_rules'
+        source_model = f'{app_label}.studyterminationconclusion'
