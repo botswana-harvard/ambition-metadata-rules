@@ -14,7 +14,7 @@ class StudyTerminationConclusionCrfRuleGroup(CrfRuleGroup):
         predicate=P('termination_reason', 'eq', 'included_in_error'),
         consequence=REQUIRED,
         alternative=NOT_REQUIRED,
-        target_models=['protocoldeviationviolation'])
+        target_models=[f'{app_label}.protocoldeviationviolation'])
 
     class Meta:
         app_label = 'ambition_metadata_rules'
