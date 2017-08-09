@@ -18,7 +18,7 @@ class TestPredicates(TestCase):
     def setUp(self):
         self.subject_identifier = '111111111'
         self.reference_helper = self.reference_helper_cls(
-            visit_model='ambition_subject.subjectvisit',
+            visit_model=self.visit_model,
             subject_identifier=self.subject_identifier)
 
         report_datetime = Arrow.fromdatetime(
