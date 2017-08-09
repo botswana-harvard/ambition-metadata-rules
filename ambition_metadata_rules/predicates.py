@@ -2,8 +2,6 @@ from dateutil.relativedelta import relativedelta
 
 from edc_metadata.rules import PredicateCollection
 
-# from ambition_subject.models import PatientHistory
-
 
 class Predicates(PredicateCollection):
 

@@ -14,7 +14,7 @@ class AdverseEventCrfRuleGroup(CrfRuleGroup):
         predicate=P('ae_severity_grade', 'eq', 'grade_5'),
         consequence=REQUIRED,
         alternative=NOT_REQUIRED,
-        target_models=['deathreport'])
+        target_models=[f'{app_label}.deathreport'])
 
     class Meta:
         app_label = 'ambition_metadata_rules'
