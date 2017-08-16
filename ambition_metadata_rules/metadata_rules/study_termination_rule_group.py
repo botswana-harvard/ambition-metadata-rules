@@ -17,5 +17,5 @@ class StudyTerminationConclusionCrfRuleGroup(CrfRuleGroup):
         target_models=[f'{app_label}.protocoldeviationviolation'])
 
     class Meta:
-        app_label = 'ambition_metadata_rules'
+        app_label = app_label
         source_model = f'{app_label}.studyterminationconclusion'

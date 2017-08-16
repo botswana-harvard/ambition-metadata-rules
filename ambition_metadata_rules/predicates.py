@@ -6,7 +6,7 @@ from edc_metadata.rules import PredicateCollection
 class Predicates(PredicateCollection):
 
     app_label = 'ambition_subject'
-    visit_model = 'ambition_subject.subjectvisit'
+    visit_model = f'{app_label}.subjectvisit'
 
     def check_vl_cd4_date_gt_3_months(self, visit, panel_name):
         values = self.exists(

@@ -29,6 +29,6 @@ class ViralloadCD4RequisitionRuleGroup(RequisitionRuleGroup):
         target_panels=[viral_load_panel])
 
     class Meta:
-        app_label = 'ambition_metadata_rules'
+        app_label = app_label
         source_model = f'{app_label}.patienthistory'
         requisition_model = f'{app_label}.subjectrequisition'
