@@ -83,5 +83,5 @@ class PrnModelCrfRuleGroup(CrfRuleGroup):
         target_models=[f'{app_label}.deathreporttmg2'])
 
     class Meta:
-        app_label = app_label
         source_model = f'{app_label}.prnmodel'
+        app_label = 'ambition_metadata_rules'
