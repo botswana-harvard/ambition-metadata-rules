@@ -8,7 +8,7 @@ class Predicates(PredicateCollection):
     app_label = 'ambition_subject'
     visit_model = f'{app_label}.subjectvisit'
 
-    def check_vl_cd4_date_gt_3_months(self, visit, panel_name):
+    def check_gt_3_months(self, visit=None, panel_name=None):
         values = self.exists(
             model='patienthistory',
             subject_identifier=visit.subject_identifier,
@@ -18,7 +18,11 @@ class Predicates(PredicateCollection):
                 (values[0] or (visit.report_datetime).date()))
 
     def func_require_cd4(self, visit, **kwargs):
-        return self.check_vl_cd4_date_gt_3_months(visit, 'cd4_date')
+        if visit.visit_code == '1000':
+            return self.check_gt_3_months(visit=visit, panel_name='cd4_date')
+        return False
 
     def func_require_vl(self, visit, **kwargs):
-        return self.check_vl_cd4_date_gt_3_months(visit, 'viral_load_date')
+        if visit.visit_code == '1000':
+            return self.check_gt_3_months(visit=visit, panel_name='viral_load_date')
+        return False
