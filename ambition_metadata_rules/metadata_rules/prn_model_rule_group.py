@@ -1,7 +1,6 @@
 from edc_constants.constants import YES
 from edc_metadata.constants import NOT_REQUIRED, REQUIRED
-from edc_metadata.rules import CrfRule, CrfRuleGroup, P
-from edc_metadata.rules.decorators import register
+from edc_metadata_rules import CrfRule, CrfRuleGroup, register, P
 
 
 app_label = 'ambition_subject'
@@ -83,5 +82,5 @@ class PrnModelCrfRuleGroup(CrfRuleGroup):
         target_models=[f'{app_label}.deathreporttmg2'])
 
     class Meta:
+        app_label = app_label
         source_model = f'{app_label}.prnmodel'
-        app_label = 'ambition_metadata_rules'

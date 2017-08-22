@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'edc_identifier.apps.AppConfig',
     'edc_device.apps.AppConfig',
     'edc_reference.apps.AppConfig',
+    'edc_metadata_rules.apps.AppConfig',
     'ambition_reference.apps.AppConfig',
     'ambition_visit_schedule.apps.AppConfig',
     'ambition_metadata_rules.apps.EdcMetadataAppConfig',

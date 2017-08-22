@@ -1,6 +1,6 @@
 from dateutil.relativedelta import relativedelta
 
-from edc_metadata.rules import PredicateCollection
+from edc_metadata_rules import PredicateCollection
 
 
 class Predicates(PredicateCollection):
