@@ -1,8 +1,7 @@
 from dateutil.relativedelta import relativedelta
 
 from edc_metadata.constants import NOT_REQUIRED, REQUIRED
-from edc_metadata.rules import RequisitionRule, RequisitionRuleGroup
-from edc_metadata.rules.decorators import register
+from edc_metadata_rules import RequisitionRule, RequisitionRuleGroup, register
 
 from ambition_labs.labs import viral_load_panel, cd4_panel
 

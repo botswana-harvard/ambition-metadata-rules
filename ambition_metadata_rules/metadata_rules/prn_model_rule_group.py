@@ -1,7 +1,6 @@
 from edc_constants.constants import YES
 from edc_metadata.constants import NOT_REQUIRED, REQUIRED
-from edc_metadata.rules import CrfRule, CrfRuleGroup, P
-from edc_metadata.rules.decorators import register
+from edc_metadata_rules import CrfRule, CrfRuleGroup, P, register
 
 
 app_label = 'ambition_subject'
