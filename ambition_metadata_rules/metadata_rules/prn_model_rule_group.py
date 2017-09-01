@@ -1,5 +1,5 @@
 from edc_constants.constants import YES
-from edc_metadata.constants import NOT_REQUIRED, REQUIRED
+from edc_metadata import NOT_REQUIRED, REQUIRED
 from edc_metadata_rules import CrfRule, CrfRuleGroup, register, P
 
 
