@@ -10,7 +10,7 @@ class Predicates(PredicateCollection):
 
     def check_gt_3_months(self, visit=None, panel_name=None):
         values = self.exists(
-            model='patienthistory',
+            reference_name=f'{self.app_label}.patienthistory',
             subject_identifier=visit.subject_identifier,
             report_datetime=visit.report_datetime,
             field_name=panel_name)
