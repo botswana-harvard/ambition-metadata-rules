@@ -13,6 +13,12 @@ class StudyTerminationConclusionCrfRuleGroup(CrfRuleGroup):
         alternative=NOT_REQUIRED,
         target_models=[f'{app_label}.protocoldeviationviolation'])
 
+    death_report = CrfRule(
+        predicate=P('termination_reason', 'eq', 'died'),
+        consequence=REQUIRED,
+        alternative=NOT_REQUIRED,
+        target_models=[f'{app_label}.deathreport'])
+
     class Meta:
         app_label = app_label
         source_model = f'{app_label}.studyterminationconclusion'
