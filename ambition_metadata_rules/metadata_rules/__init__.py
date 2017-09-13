@@ -1,5 +1,6 @@
 from .adverse_event_rule_group import AdverseEventCrfRuleGroup
 from .blood_result_rule_group import BloodResultCrfRuleGroup
 from .prn_model_rule_group import PrnModelCrfRuleGroup
+from .recurrence_symptom_rule_group import RecurrenceSymptomCrfRuleGroup
 from .study_termination_rule_group import StudyTerminationConclusionCrfRuleGroup
 from .viralload_cd4_rule_group import ViralloadCD4RequisitionRuleGroup
