@@ -14,6 +14,12 @@ class RecurrenceSymptomCrfRuleGroup(CrfRuleGroup):
         alternative=NOT_REQUIRED,
         target_models=[f'{app_label}.adverseevent'])
 
+    adverse_event = CrfRule(
+        predicate=P('lp_completed', 'eq', YES),
+        consequence=REQUIRED,
+        alternative=NOT_REQUIRED,
+        target_models=[f'{app_label}.lumbarpuncturecsf'])
+
     class Meta:
         app_label = app_label
         source_model = f'{app_label}.recurrencesymptom'
