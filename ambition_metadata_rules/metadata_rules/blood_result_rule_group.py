@@ -4,7 +4,7 @@ from edc_metadata_rules import CrfRule, CrfRuleGroup, register, P
 from ..predicates import Predicates
 
 
-pc = Predicates
+pc = Predicates()
 app_label = 'ambition_subject'
 
 
