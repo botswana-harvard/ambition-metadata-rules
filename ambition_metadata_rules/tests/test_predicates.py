@@ -88,7 +88,7 @@ class TestPredicates(TestCase):
             abnormal_results_in_ae_range=YES)
         self.assertFalse(pc.func_require_ae(self.subject_visits[0]))
 
-    def test_ae_reqiuired_visit_1000(self):
+    def test_ae_reqiuired_visit_1003(self):
         pc = Predicates()
         self.reference_helper.create_for_model(
             report_datetime=self.subject_visits[1].report_datetime,
