@@ -42,7 +42,7 @@ class Predicates(PredicateCollection):
             subject_identifier=visit.subject_identifier,
             report_datetime=visit.report_datetime,
             field_name='cause_of_death')
-        return values[0] == cause
+        return not (values[0] == cause)
 
     def func_require_cd4(self, visit, **kwargs):
         if visit.visit_code == '1000':
