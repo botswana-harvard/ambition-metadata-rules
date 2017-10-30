@@ -44,6 +44,24 @@ class Predicates(PredicateCollection):
             field_name='cause_of_death')
         return not (values[0] == cause)
 
+    def model_field_exists(self, visit=None, model_lower=None, model_field=None):
+        values = self.exists(
+            reference_name=f'{self.app_label}.{model_lower}',
+            subject_identifier=visit.subject_identifier,
+            report_datetime=visit.report_datetime,
+            field_name=f'{model_field}')
+        return (values[0] == YES)
+
+    def func_require_recurrence(self, visit, **kwargs):
+        prn_required = self.model_field_exists(visit=visit,
+                                               model_lower='prnmodel',
+                                               model_field='recurrence_symptom')
+
+        adverse_event_required = self.model_field_exists(visit=visit,
+                                                         model_lower='adverseevent',
+                                                         model_field='ae_cm_recurrence')
+        return prn_required or adverse_event_required
+
     def func_require_cd4(self, visit, **kwargs):
         if visit.visit_code == '1000':
             return self.check_gt_3_months(visit=visit, panel_name='cd4_date')

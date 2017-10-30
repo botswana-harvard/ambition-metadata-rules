@@ -2,6 +2,10 @@ from edc_constants.constants import YES
 from edc_metadata.constants import NOT_REQUIRED, REQUIRED
 from edc_metadata_rules import CrfRule, CrfRuleGroup, register, P
 
+from ..predicates import Predicates
+
+pc = Predicates()
+
 app_label = 'ambition_subject'
 
 
@@ -15,7 +19,7 @@ class AdverseEventCrfRuleGroup(CrfRuleGroup):
         target_models=[f'{app_label}.deathreport'])
 
     recurrence_symptom = CrfRule(
-        predicate=P('ae_cm_recurrence', 'eq', YES),
+        predicate=pc.func_require_recurrence,
         consequence=REQUIRED,
         alternative=NOT_REQUIRED,
         target_models=[f'{app_label}.recurrencesymptom'])
