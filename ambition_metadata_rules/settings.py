@@ -129,6 +129,7 @@ USE_TZ = True
 
 KEY_PATH = os.path.join(BASE_DIR, 'crypto_fields')
 STATIC_ROOT = os.path.join(BASE_DIR, 'ambition_metadata_rules', 'static')
+DEFAULT_APPOINTMENT_MODEL = 'ambition_subject.appointment'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
