@@ -1,9 +1,9 @@
 from dateutil.relativedelta import relativedelta
 from django.apps import apps as django_apps
 from django.core.exceptions import ObjectDoesNotExist
+from edc_constants.constants import YES
 
 from edc_metadata_rules import PredicateCollection
-from edc_constants.constants import YES
 
 
 class Predicates(PredicateCollection):
@@ -14,6 +14,10 @@ class Predicates(PredicateCollection):
     @property
     def death_report_model_cls(self):
         return django_apps.get_model(f'{self.app_label}.deathreport')
+
+    @property
+    def bloodresult_model_cls(self):
+        return django_apps.get_model(f'{self.app_label}.bloodresult')
 
     @property
     def death_report_model_tmg1_cls(self):
@@ -76,6 +80,19 @@ class Predicates(PredicateCollection):
         if visit.visit_code != '1000':
             return self.blood_result_abnormal(visit=visit)
         return False
+
+    def func_offstudy_required(self, visit, **kwargs):
+        is_ineligible = False
+        try:
+            obj = self.bloodresult_model_cls.objects.get(
+                subject_visit=visit,
+                subject_visit__visit_code='1000')
+            is_ineligible = (obj.neutrophils_result(obj=obj) or
+                             obj.platelets_result(obj=obj) or
+                             obj.alt_result(obj=obj))
+        except ObjectDoesNotExist:
+            return True
+        return is_ineligible
 
     def func_require_death_report_tmg1(self, visit, **kwargs):
         try:
