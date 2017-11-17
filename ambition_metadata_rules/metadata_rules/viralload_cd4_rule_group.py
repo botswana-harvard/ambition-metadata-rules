@@ -1,7 +1,6 @@
+from ambition_labs.labs import viral_load_panel, cd4_panel
 from edc_metadata import NOT_REQUIRED, REQUIRED
 from edc_metadata_rules import RequisitionRule, RequisitionRuleGroup, register
-
-from ambition_labs.labs import viral_load_panel, cd4_panel
 
 from ..predicates import Predicates
 

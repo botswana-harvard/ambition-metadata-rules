@@ -2,12 +2,11 @@ from arrow.arrow import Arrow
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from django.test import TestCase
-
+from edc_constants.constants import YES, NO
 from edc_reference import LongitudinalRefset
 from edc_reference.tests import ReferenceTestHelper
 
 from ..predicates import Predicates
-from edc_constants.constants import YES, NO
 
 
 class TestPredicates(TestCase):

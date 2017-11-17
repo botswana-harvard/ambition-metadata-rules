@@ -2,7 +2,6 @@ from dateutil.relativedelta import relativedelta
 from django.apps import apps as django_apps
 from django.core.exceptions import ObjectDoesNotExist
 from edc_constants.constants import YES
-
 from edc_metadata_rules import PredicateCollection
 
 
@@ -57,23 +56,27 @@ class Predicates(PredicateCollection):
         return (values[0] == YES)
 
     def func_require_recurrence(self, visit, **kwargs):
-        prn_required = self.model_field_exists(visit=visit,
-                                               model_lower='prnmodel',
-                                               model_field='recurrence_symptom')
+        prn_required = self.model_field_exists(
+            visit=visit,
+            model_lower='prnmodel',
+            model_field='recurrence_symptom')
 
-        adverse_event_required = self.model_field_exists(visit=visit,
-                                                         model_lower='adverseevent',
-                                                         model_field='ae_cm_recurrence')
+        adverse_event_required = self.model_field_exists(
+            visit=visit,
+            model_lower='adverseevent',
+            model_field='ae_cm_recurrence')
         return prn_required or adverse_event_required
 
     def func_require_cd4(self, visit, **kwargs):
         if visit.visit_code == '1000':
-            return self.check_gt_3_months(visit=visit, panel_name='cd4_date')
+            return self.check_gt_3_months(
+                visit=visit, panel_name='cd4_date')
         return False
 
     def func_require_vl(self, visit, **kwargs):
         if visit.visit_code == '1000':
-            return self.check_gt_3_months(visit=visit, panel_name='viral_load_date')
+            return self.check_gt_3_months(
+                visit=visit, panel_name='viral_load_date')
         return False
 
     def func_require_ae(self, visit, **kwargs):
@@ -87,9 +90,10 @@ class Predicates(PredicateCollection):
             obj = self.bloodresult_model_cls.objects.get(
                 subject_visit=visit,
                 subject_visit__visit_code='1000')
-            is_ineligible = (obj.neutrophils_result(obj=obj) or
-                             obj.platelets_result(obj=obj) or
-                             obj.alt_result(obj=obj))
+            is_ineligible = (
+                obj.neutrophils_result(obj=obj) or
+                obj.platelets_result(obj=obj) or
+                obj.alt_result(obj=obj))
         except ObjectDoesNotExist:
             return True
         return is_ineligible
@@ -107,6 +111,7 @@ class Predicates(PredicateCollection):
         try:
             death_report = self.death_report_model_cls.objects.get(
                 subject_visit=visit)
-            return self.cause_of_death(visit=visit, cause=death_report.cause_of_death)
+            return self.cause_of_death(
+                visit=visit, cause=death_report.cause_of_death)
         except ObjectDoesNotExist:
             return False
