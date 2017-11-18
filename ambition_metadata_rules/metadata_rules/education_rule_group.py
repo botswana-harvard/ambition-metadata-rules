@@ -9,7 +9,7 @@ app_label = 'ambition_subject'
 class EducationCrfRuleGroup(CrfRuleGroup):
 
     head_of_household = CrfRule(
-        predicate=P('head_of_household', 'eq', NO),
+        predicate=P('household_head', 'eq', NO),
         consequence=REQUIRED,
         alternative=NOT_REQUIRED,
         target_models=[f'{app_label}.educationhoh'])
