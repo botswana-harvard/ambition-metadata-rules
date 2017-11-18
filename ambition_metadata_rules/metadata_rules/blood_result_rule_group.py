@@ -1,11 +1,10 @@
 from edc_metadata.constants import NOT_REQUIRED, REQUIRED
-from edc_metadata_rules import CrfRule, CrfRuleGroup, register, P
+from edc_metadata_rules import CrfRule, CrfRuleGroup, register
 
 from ..predicates import Predicates
 
-
-pc = Predicates()
 app_label = 'ambition_subject'
+pc = Predicates()
 
 
 @register()

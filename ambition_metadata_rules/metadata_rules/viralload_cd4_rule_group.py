@@ -4,9 +4,8 @@ from edc_metadata_rules import RequisitionRule, RequisitionRuleGroup, register
 
 from ..predicates import Predicates
 
-pc = Predicates()
-
 app_label = 'ambition_subject'
+pc = Predicates()
 
 
 @register()

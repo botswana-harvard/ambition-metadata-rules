@@ -1,6 +1,7 @@
 from .adverse_event_rule_group import AdverseEventCrfRuleGroup
 from .blood_result_rule_group import BloodResultCrfRuleGroup
 from .death_report_rule_group import DeathReportCrfRuleGroup, DeathReportTmgCrfRuleGroup
+from .education_rule_group import EducationCrfRuleGroup
 from .medical_expenses_rule_group import MedicalExpensesCrfRuleGroup
 from .prn_model_rule_group import PrnModelCrfRuleGroup
 from .recurrence_symptom_rule_group import RecurrenceSymptomCrfRuleGroup
