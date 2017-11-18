@@ -84,20 +84,6 @@ class Predicates(PredicateCollection):
             return self.blood_result_abnormal(visit=visit)
         return False
 
-    def func_offstudy_required(self, visit, **kwargs):
-        is_ineligible = False
-        try:
-            obj = self.bloodresult_model_cls.objects.get(
-                subject_visit=visit,
-                subject_visit__visit_code='1000')
-            is_ineligible = (
-                obj.neutrophils_result(obj=obj) or
-                obj.platelets_result(obj=obj) or
-                obj.alt_result(obj=obj))
-        except ObjectDoesNotExist:
-            return True
-        return is_ineligible
-
     def func_require_death_report_tmg1(self, visit, **kwargs):
         try:
             death_report = self.death_report_model_cls.objects.get(

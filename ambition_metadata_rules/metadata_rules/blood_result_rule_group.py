@@ -16,12 +16,6 @@ class BloodResultCrfRuleGroup(CrfRuleGroup):
         alternative=NOT_REQUIRED,
         target_models=[f'{app_label}.adverseevent'])
 
-    offstudy = CrfRule(
-        predicate=pc.func_offstudy_required,
-        consequence=REQUIRED,
-        alternative=NOT_REQUIRED,
-        target_models=[f'{app_label}.subjectoffstudy'])
-
     class Meta:
         app_label = app_label
         source_model = f'{app_label}.bloodresult'
