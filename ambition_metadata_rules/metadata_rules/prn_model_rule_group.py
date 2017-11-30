@@ -11,23 +11,23 @@ pc = Predicates()
 @register()
 class PrnModelCrfRuleGroup(CrfRuleGroup):
 
-    adverse_event = CrfRule(
-        predicate=P('adverse_event', 'eq', YES),
-        consequence=REQUIRED,
-        alternative=NOT_REQUIRED,
-        target_models=[f'{app_label}.adverseevent'])
+    #     adverse_event = CrfRule(
+    #         predicate=P('adverse_event', 'eq', YES),
+    #         consequence=REQUIRED,
+    #         alternative=NOT_REQUIRED,
+    #         target_models=[f'{app_label}.adverseevent'])
 
-    adverse_event_tmg = CrfRule(
-        predicate=P('adverse_event_tmg', 'eq', YES),
-        consequence=REQUIRED,
-        alternative=NOT_REQUIRED,
-        target_models=[f'{app_label}.adverseeventtmg'])
-
-    adverse_event_followup = CrfRule(
-        predicate=P('adverse_event_followup', 'eq', YES),
-        consequence=REQUIRED,
-        alternative=NOT_REQUIRED,
-        target_models=[f'{app_label}.adverseeventfollowup'])
+    #     adverse_event_tmg = CrfRule(
+    #         predicate=P('adverse_event_tmg', 'eq', YES),
+    #         consequence=REQUIRED,
+    #         alternative=NOT_REQUIRED,
+    #         target_models=[f'{app_label}.adverseeventtmg'])
+    #
+    #     adverse_event_followup = CrfRule(
+    #         predicate=P('adverse_event_followup', 'eq', YES),
+    #         consequence=REQUIRED,
+    #         alternative=NOT_REQUIRED,
+    #         target_models=[f'{app_label}.adverseeventfollowup'])
 
     blood_result = CrfRule(
         predicate=P('blood_result', 'eq', YES),

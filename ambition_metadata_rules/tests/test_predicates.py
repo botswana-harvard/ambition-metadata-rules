@@ -42,42 +42,42 @@ class TestPredicates(TestCase):
             reference_model_cls=self.reference_model
         ).order_by('report_datetime')
 
-    def test_recurrence_required_prn(self):
-        pc = Predicates()
-        self.reference_helper.create_for_model(
-            report_datetime=self.subject_visits[0].report_datetime,
-            reference_name=f'{self.app_label}.prnmodel',
-            visit_code=self.subject_visits[0].visit_code,
-            recurrence_symptom=YES)
-        self.reference_helper.create_for_model(
-            report_datetime=self.subject_visits[0].report_datetime,
-            reference_name=f'{self.app_label}.adverseevent',
-            visit_code=self.subject_visits[0].visit_code,
-            ae_cm_recurrence=NO)
-        self.assertTrue(pc.func_require_recurrence(self.subject_visits[0]))
+#     def test_recurrence_required_prn(self):
+#         pc = Predicates()
+#         self.reference_helper.create_for_model(
+#             report_datetime=self.subject_visits[0].report_datetime,
+#             reference_name=f'{self.app_label}.prnmodel',
+#             visit_code=self.subject_visits[0].visit_code,
+#             recurrence_symptom=YES)
+#         self.reference_helper.create_for_model(
+#             report_datetime=self.subject_visits[0].report_datetime,
+#             reference_name=f'{self.app_label}.adverseevent',
+#             visit_code=self.subject_visits[0].visit_code,
+#             ae_cm_recurrence=NO)
+#         self.assertTrue(pc.func_require_recurrence(self.subject_visits[0]))
 
-    def test_recurrence_not_required_prn(self):
-        pc = Predicates()
-        self.reference_helper.create_for_model(
-            report_datetime=self.subject_visits[0].report_datetime,
-            reference_name=f'{self.app_label}.prnmodel',
-            visit_code=self.subject_visits[0].visit_code,
-            recurrence_symptom=NO)
-        self.reference_helper.create_for_model(
-            report_datetime=self.subject_visits[0].report_datetime,
-            reference_name=f'{self.app_label}.adverseevent',
-            visit_code=self.subject_visits[0].visit_code,
-            ae_cm_recurrence=NO)
-        self.assertFalse(pc.func_require_recurrence(self.subject_visits[0]))
+#     def test_recurrence_not_required_prn(self):
+#         pc = Predicates()
+#         self.reference_helper.create_for_model(
+#             report_datetime=self.subject_visits[0].report_datetime,
+#             reference_name=f'{self.app_label}.prnmodel',
+#             visit_code=self.subject_visits[0].visit_code,
+#             recurrence_symptom=NO)
+#         self.reference_helper.create_for_model(
+#             report_datetime=self.subject_visits[0].report_datetime,
+#             reference_name=f'{self.app_label}.adverseevent',
+#             visit_code=self.subject_visits[0].visit_code,
+#             ae_cm_recurrence=NO)
+#         self.assertFalse(pc.func_require_recurrence(self.subject_visits[0]))
 
-    def test_recurrence_required_adverse_event(self):
-        pc = Predicates()
-        self.reference_helper.create_for_model(
-            report_datetime=self.subject_visits[0].report_datetime,
-            reference_name=f'{self.app_label}.adverseevent',
-            visit_code=self.subject_visits[0].visit_code,
-            ae_cm_recurrence=YES)
-        self.assertTrue(pc.func_require_recurrence(self.subject_visits[0]))
+#     def test_recurrence_required_adverse_event(self):
+#         pc = Predicates()
+#         self.reference_helper.create_for_model(
+#             report_datetime=self.subject_visits[0].report_datetime,
+#             reference_name=f'{self.app_label}.adverseevent',
+#             visit_code=self.subject_visits[0].visit_code,
+#             ae_cm_recurrence=YES)
+#         self.assertTrue(pc.func_require_recurrence(self.subject_visits[0]))
 
     def test_cd4_requisition_required(self):
         pc = Predicates()

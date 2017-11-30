@@ -8,11 +8,12 @@ app_label = 'ambition_subject'
 @register()
 class RecurrenceSymptomCrfRuleGroup(CrfRuleGroup):
 
-    adverse_event = CrfRule(
-        predicate=P('patient_readmitted', 'eq', YES),
-        consequence=REQUIRED,
-        alternative=NOT_REQUIRED,
-        target_models=[f'{app_label}.adverseevent'])
+    # TODO: Review if this is still relevant after AE refactor.
+    # adverse_event = CrfRule(
+    # predicate=P('patient_readmitted', 'eq', YES),
+    # consequence=REQUIRED,
+    # alternative=NOT_REQUIRED,
+    # target_models=[f'{app_label}.adverseevent'])
 
     lumbar_puncture = CrfRule(
         predicate=P('lp_completed', 'eq', YES),

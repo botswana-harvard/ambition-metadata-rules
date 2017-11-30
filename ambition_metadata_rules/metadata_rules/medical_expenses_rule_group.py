@@ -8,7 +8,7 @@ app_label = 'ambition_subject'
 @register()
 class MedicalExpensesCrfRuleGroup(CrfRuleGroup):
 
-    adverse_event = CrfRule(
+    medical_expenses = CrfRule(
         predicate=P('care_before_hospital', 'eq', YES),
         consequence=REQUIRED,
         alternative=NOT_REQUIRED,
