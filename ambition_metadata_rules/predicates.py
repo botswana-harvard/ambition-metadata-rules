@@ -55,17 +55,17 @@ class Predicates(PredicateCollection):
             field_name=f'{model_field}')
         return (values[0] == YES)
 
-    def func_require_recurrence(self, visit, **kwargs):
-        prn_required = self.model_field_exists(
-            visit=visit,
-            model_lower='prnmodel',
-            model_field='recurrence_symptom')
-
-        adverse_event_required = self.model_field_exists(
-            visit=visit,
-            model_lower='adverseevent',
-            model_field='ae_cm_recurrence')
-        return prn_required or adverse_event_required
+#     def func_require_recurrence(self, visit, **kwargs):
+#         prn_required = self.model_field_exists(
+#             visit=visit,
+#             model_lower='prnmodel',
+#             model_field='recurrence_symptom')
+#
+#         adverse_event_required = self.model_field_exists(
+#             visit=visit,
+#             model_lower='adverseevent',
+#             model_field='ae_cm_recurrence')
+#         return prn_required or adverse_event_required
 
     def func_require_cd4(self, visit, **kwargs):
         if visit.visit_code == '1000':
@@ -79,10 +79,10 @@ class Predicates(PredicateCollection):
                 visit=visit, panel_name='viral_load_date')
         return False
 
-    def func_require_ae(self, visit, **kwargs):
-        if visit.visit_code != '1000':
-            return self.blood_result_abnormal(visit=visit)
-        return False
+#     def func_require_ae(self, visit, **kwargs):
+#         if visit.visit_code != '1000':
+#             return self.blood_result_abnormal(visit=visit)
+#         return False
 
     def func_require_death_report_tmg1(self, visit, **kwargs):
         try:
