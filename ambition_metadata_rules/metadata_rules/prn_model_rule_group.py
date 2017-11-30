@@ -47,17 +47,17 @@ class PrnModelCrfRuleGroup(CrfRuleGroup):
         alternative=NOT_REQUIRED,
         target_models=[f'{app_label}.radiology'])
 
-    recurrence_symptom = CrfRule(
-        predicate=pc.func_require_recurrence,
-        consequence=REQUIRED,
-        alternative=NOT_REQUIRED,
-        target_models=[f'{app_label}.recurrencesymptom'])
-
-    protocol_deviation = CrfRule(
-        predicate=P('protocol_deviation', 'eq', YES),
-        consequence=REQUIRED,
-        alternative=NOT_REQUIRED,
-        target_models=[f'{app_label}.protocoldeviationviolation'])
+#     recurrence_symptom = CrfRule(
+#         predicate=pc.func_require_recurrence,
+#         consequence=REQUIRED,
+#         alternative=NOT_REQUIRED,
+#         target_models=[f'{app_label}.recurrencesymptom'])
+#
+#     protocol_deviation = CrfRule(
+#         predicate=P('protocol_deviation', 'eq', YES),
+#         consequence=REQUIRED,
+#         alternative=NOT_REQUIRED,
+#         target_models=[f'{app_label}.protocoldeviationviolation'])
 
     lumbar_puncture = CrfRule(
         predicate=P('lumbar_puncture', 'eq', YES),
@@ -65,11 +65,11 @@ class PrnModelCrfRuleGroup(CrfRuleGroup):
         alternative=NOT_REQUIRED,
         target_models=[f'{app_label}.lumbarpuncturecsf'])
 
-    death_report = CrfRule(
-        predicate=P('death_report', 'eq', YES),
-        consequence=REQUIRED,
-        alternative=NOT_REQUIRED,
-        target_models=[f'{app_label}.deathreport'])
+#     death_report = CrfRule(
+#         predicate=P('death_report', 'eq', YES),
+#         consequence=REQUIRED,
+#         alternative=NOT_REQUIRED,
+#         target_models=[f'{app_label}.deathreport'])
 
     class Meta:
         app_label = app_label
