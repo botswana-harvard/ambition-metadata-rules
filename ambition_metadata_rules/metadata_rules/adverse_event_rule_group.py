@@ -11,7 +11,7 @@
 # class AdverseEventCrfRuleGroup(CrfRuleGroup):
 #
 #     death_report = CrfRule(
-#         predicate=P('ae_severity_grade', 'eq', 'grade_5'),
+#         predicate=P('ae_grade', 'eq', 'grade_5'),
 #         consequence=REQUIRED,
 #         alternative=NOT_REQUIRED,
 #         target_models=[f'{app_label}.deathreport'])
