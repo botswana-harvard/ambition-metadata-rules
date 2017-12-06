@@ -1,6 +1,8 @@
+from ambition_labs import viral_load_panel, cd4_panel
 from edc_constants.constants import YES
 from edc_metadata import NOT_REQUIRED, REQUIRED
 from edc_metadata_rules import CrfRule, CrfRuleGroup, register, P
+from edc_metadata_rules import RequisitionRule, RequisitionRuleGroup
 
 from ..predicates import Predicates
 
@@ -74,3 +76,24 @@ class PrnModelCrfRuleGroup(CrfRuleGroup):
     class Meta:
         app_label = app_label
         source_model = f'{app_label}.prnmodel'
+
+
+@register()
+class PrnRequitisionRuleGroup(RequisitionRuleGroup):
+
+    require_vl = RequisitionRule(
+        predicate=P('viral_load', 'eq', YES),
+        consequence=REQUIRED,
+        alternative=NOT_REQUIRED,
+        target_panels=[viral_load_panel])
+
+    require_cd4 = RequisitionRule(
+        predicate=P('cd4', 'eq', YES),
+        consequence=REQUIRED,
+        alternative=NOT_REQUIRED,
+        target_panels=[cd4_panel])
+
+    class Meta:
+        app_label = app_label
+        source_model = f'{app_label}.prnmodel'
+        requisition_model = f'{app_label}.subjectrequisition'
