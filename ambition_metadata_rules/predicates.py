@@ -1,6 +1,5 @@
+from ambition_visit_schedule import DAY1
 from dateutil.relativedelta import relativedelta
-from django.apps import apps as django_apps
-from django.core.exceptions import ObjectDoesNotExist
 from edc_constants.constants import YES
 from edc_metadata_rules import PredicateCollection
 
@@ -68,19 +67,19 @@ class Predicates(PredicateCollection):
 #         return prn_required
 
     def func_require_cd4(self, visit, **kwargs):
-        if visit.visit_code == '1000':
+        if visit.visit_code == DAY1:
             return self.check_gt_3_months(
                 visit=visit, panel_name='cd4_date')
         return False
 
     def func_require_vl(self, visit, **kwargs):
-        if visit.visit_code == '1000':
+        if visit.visit_code == DAY1:
             return self.check_gt_3_months(
                 visit=visit, panel_name='viral_load_date')
         return False
 
 #     def func_require_ae(self, visit, **kwargs):
-#         if visit.visit_code != '1000':
+#         if visit.visit_code != DAY1:
 #             return self.blood_result_abnormal(visit=visit)
 #         return False
 

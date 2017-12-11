@@ -1,8 +1,9 @@
+from ambition_visit_schedule import DAY1, DAY3, DAY5
 from arrow.arrow import Arrow
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from django.test import TestCase
-from edc_constants.constants import YES, NO
+from edc_constants.constants import YES
 from edc_reference import LongitudinalRefset
 from edc_reference.tests import ReferenceTestHelper
 
@@ -25,13 +26,13 @@ class TestPredicates(TestCase):
         report_datetime = Arrow.fromdatetime(
             datetime(2017, 7, 7)).datetime
         self.reference_helper.create_visit(
-            report_datetime=report_datetime, timepoint='1000')
+            report_datetime=report_datetime, timepoint=DAY1)
         self.reference_helper.create_visit(
             report_datetime=report_datetime + relativedelta(days=3),
-            timepoint='1003')
+            timepoint=DAY3)
         self.reference_helper.create_visit(
             report_datetime=report_datetime + relativedelta(days=5),
-            timepoint='1005')
+            timepoint=DAY5)
 
     @property
     def subject_visits(self):
@@ -115,21 +116,3 @@ class TestPredicates(TestCase):
             visit_code=self.subject_visits[0].visit_code,
             viral_load_date=(self.subject_visits[0].report_datetime).date())
         self.assertFalse(pc.func_require_vl(self.subject_visits[0]))
-
-    def test_ae_not_reqiuired_visit_1000(self):
-        pc = Predicates()
-        self.reference_helper.create_for_model(
-            report_datetime=self.subject_visits[0].report_datetime,
-            reference_name=f'{self.app_label}.bloodresult',
-            visit_code=self.subject_visits[0].visit_code,
-            abnormal_results_in_ae_range=YES)
-        self.assertFalse(pc.func_require_ae(self.subject_visits[0]))
-
-    def test_ae_reqiuired_visit_1003(self):
-        pc = Predicates()
-        self.reference_helper.create_for_model(
-            report_datetime=self.subject_visits[1].report_datetime,
-            reference_name=f'{self.app_label}.bloodresult',
-            visit_code=self.subject_visits[1].visit_code,
-            abnormal_results_in_ae_range=YES)
-        self.assertTrue(pc.func_require_ae(self.subject_visits[1]))
