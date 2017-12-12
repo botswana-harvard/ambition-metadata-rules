@@ -1,4 +1,4 @@
-from ambition_labs import viral_load_panel, cd4_panel
+from ambition_labs import viral_load_panel, cd4_panel, fbc_panel, chemistry_alt_panel
 from edc_constants.constants import YES
 from edc_metadata import NOT_REQUIRED, REQUIRED
 from edc_metadata_rules import CrfRule, CrfRuleGroup, register, P
@@ -92,6 +92,18 @@ class PrnRequitisionRuleGroup(RequisitionRuleGroup):
         consequence=REQUIRED,
         alternative=NOT_REQUIRED,
         target_panels=[cd4_panel])
+
+    require_fbc = RequisitionRule(
+        predicate=P('fbc', 'eq', YES),
+        consequence=REQUIRED,
+        alternative=NOT_REQUIRED,
+        target_panels=[fbc_panel])
+
+    require_chemistry = RequisitionRule(
+        predicate=P('chemistry', 'eq', YES),
+        consequence=REQUIRED,
+        alternative=NOT_REQUIRED,
+        target_panels=[chemistry_alt_panel])
 
     class Meta:
         app_label = app_label
