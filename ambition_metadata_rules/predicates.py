@@ -43,26 +43,12 @@ class Predicates(PredicateCollection):
         return (values[0] == YES)
 
     def func_require_cd4(self, visit, **kwargs):
-        values = self.exists(
-            reference_name=f'{self.app_label}.prnmodel',
-            subject_identifier=visit.subject_identifier,
-            report_datetime=visit.report_datetime,
-            field_name='cd4')
-        if YES in values:
-            return True
-        elif visit.visit_code == DAY1:
+        if visit.visit_code == DAY1:
             return self.check_gt_3_months(
                 visit=visit, panel_name='cd4_date')
         return False
 
     def func_require_vl(self, visit, **kwargs):
-        values = self.exists(
-            reference_name=f'{self.app_label}.prnmodel',
-            subject_identifier=visit.subject_identifier,
-            report_datetime=visit.report_datetime,
-            field_name='viral_load')
-        if YES in values:
-            return True
         if visit.visit_code == DAY1:
             return self.check_gt_3_months(
                 visit=visit, panel_name='viral_load_date')
