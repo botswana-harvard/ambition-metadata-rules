@@ -2,7 +2,9 @@ from ambition_visit_schedule import DAY1, DAY3, DAY5
 from arrow.arrow import Arrow
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
+from django.contrib.sites.models import Site
 from django.test import TestCase
+from django.test.utils import override_settings
 from edc_reference import LongitudinalRefset
 from edc_reference.tests import ReferenceTestHelper
 
@@ -17,6 +19,11 @@ class TestPredicates(TestCase):
     app_label = 'ambition_subject'
 
     def setUp(self):
+
+        Site.objects.create(name='gaborone', id=10, domain='bw.testing.com')
+        Site.objects.create(name='harare', id=20, domain='zw.testing.com')
+        Site.objects.create(name='blantyre', id=30, domain='mw.testing.com')
+
         self.subject_identifier = '111111111'
         self.reference_helper = self.reference_helper_cls(
             visit_model=self.visit_model,
@@ -78,3 +85,25 @@ class TestPredicates(TestCase):
             visit_code=self.subject_visits[0].visit_code,
             viral_load_date=(self.subject_visits[0].report_datetime).date())
         self.assertFalse(pc.func_require_vl(self.subject_visits[0]))
+
+    @override_settings(SITE_ID=30)
+    def test_pkpd_site_eq_blantyre(self):
+        pc = Predicates()
+        self.assertTrue(pc.func_require_pkpd(self.subject_visits[0]))
+
+    @override_settings(SITE_ID=20)
+    def test_pkpd_site_eq_harare(self):
+        pc = Predicates()
+        self.assertFalse(pc.func_require_pkpd(self.subject_visits[0]))
+
+    @override_settings(SITE_ID=10)
+    def test_qpcr_requisition_site_eq_gaborone(self):
+        pc = Predicates()
+        self.assertTrue(
+            pc.func_require_qpcr_requisition(self.subject_visits[0]))
+
+    @override_settings(SITE_ID=20)
+    def test_qpcr_requisition_site_eq_harare(self):
+        pc = Predicates()
+        self.assertFalse(
+            pc.func_require_qpcr_requisition(self.subject_visits[0]))

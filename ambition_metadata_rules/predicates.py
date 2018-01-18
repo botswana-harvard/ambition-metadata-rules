@@ -1,5 +1,6 @@
 from ambition_visit_schedule import DAY1
 from dateutil.relativedelta import relativedelta
+from django.contrib.sites.models import Site
 from edc_constants.constants import YES
 from edc_metadata_rules import PredicateCollection
 
@@ -53,3 +54,11 @@ class Predicates(PredicateCollection):
             return self.datetime_gt_3_months(
                 visit=visit, field='viral_load_date')
         return False
+
+    def func_require_pkpd(self, visit, **kwargs):
+        current_site = Site.objects.get_current()
+        return current_site.name == 'blantyre'
+
+    def func_require_qpcr_requisition(self, visit, **kwargs):
+        current_site = Site.objects.get_current()
+        return current_site.name == 'blantyre' or current_site.name == 'gaborone'
