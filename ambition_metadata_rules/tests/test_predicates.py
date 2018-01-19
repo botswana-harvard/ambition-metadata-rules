@@ -89,12 +89,12 @@ class TestPredicates(TestCase):
     @override_settings(SITE_ID=30)
     def test_pkpd_site_eq_blantyre(self):
         pc = Predicates()
-        self.assertTrue(pc.func_require_pkpd(self.subject_visits[0]))
+        self.assertTrue(pc.func_require_pkpd_stopcm(self.subject_visits[0]))
 
     @override_settings(SITE_ID=20)
     def test_pkpd_site_eq_harare(self):
         pc = Predicates()
-        self.assertFalse(pc.func_require_pkpd(self.subject_visits[0]))
+        self.assertFalse(pc.func_require_pkpd_stopcm(self.subject_visits[0]))
 
     @override_settings(SITE_ID=10)
     def test_qpcr_requisition_site_eq_gaborone(self):

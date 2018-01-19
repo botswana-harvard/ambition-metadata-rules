@@ -55,7 +55,7 @@ class Predicates(PredicateCollection):
                 visit=visit, field='viral_load_date')
         return False
 
-    def func_require_pkpd(self, visit, **kwargs):
+    def func_require_pkpd_stopcm(self, visit, **kwargs):
         current_site = Site.objects.get_current()
         return current_site.name == 'blantyre'
 
