@@ -1,8 +1,9 @@
+from django.apps import apps as django_apps
 from ambition_visit_schedule import DAY1, DAY3, DAY5
+from edc_base.sites.utils import add_or_update_django_sites
 from arrow.arrow import Arrow
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
-from django.contrib.sites.models import Site
 from django.test import TestCase
 from django.test.utils import override_settings
 from edc_reference import LongitudinalRefset
@@ -18,11 +19,27 @@ class TestPredicates(TestCase):
     reference_model = 'edc_reference.reference'
     app_label = 'ambition_subject'
 
-    def setUp(self):
+    @classmethod
+    def setUpClass(cls):
+        # copied from ambition ... may not be up to date!
+        fqdn = 'ambition.clinicedc.org'
+        ambition_sites = (
+            (1, 'reviewer'),
+            (10, 'gaborone'),
+            (20, 'harare'),
+            (30, 'lilongwe'),
+            (40, 'blantyre'),
+            (50, 'capetown'),
+            (60, 'kampala'),
+        )
+        add_or_update_django_sites(
+            apps=django_apps, sites=ambition_sites, fqdn=fqdn)
+        return super().setUpClass()
 
-        Site.objects.create(name='gaborone', id=10, domain='bw.testing.com')
-        Site.objects.create(name='harare', id=20, domain='zw.testing.com')
-        Site.objects.create(name='blantyre', id=30, domain='mw.testing.com')
+    def tearDown(self):
+        super().tearDown()
+
+    def setUp(self):
 
         self.subject_identifier = '111111111'
         self.reference_helper = self.reference_helper_cls(
@@ -86,7 +103,7 @@ class TestPredicates(TestCase):
             viral_load_date=(self.subject_visits[0].report_datetime).date())
         self.assertFalse(pc.func_require_vl(self.subject_visits[0]))
 
-    @override_settings(SITE_ID=30)
+    @override_settings(SITE_ID=40)
     def test_pkpd_site_eq_blantyre(self):
         pc = Predicates()
         self.assertTrue(pc.func_require_pkpd_stopcm(self.subject_visits[0]))

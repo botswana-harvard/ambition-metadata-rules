@@ -1,6 +1,7 @@
 from ambition_visit_schedule import DAY1
 from dateutil.relativedelta import relativedelta
 from django.contrib.sites.models import Site
+from edc_base.sites import SiteError
 from edc_constants.constants import YES
 from edc_metadata_rules import PredicateCollection
 
@@ -56,9 +57,18 @@ class Predicates(PredicateCollection):
         return False
 
     def func_require_pkpd_stopcm(self, visit, **kwargs):
-        current_site = Site.objects.get_current()
-        return current_site.name == 'blantyre'
+        site = Site.objects.get_current()
+        if site.id == 40 and site.name != 'blantyre':
+            raise SiteError(
+                f'Expected site 40 to be "blantyre". Got {site.name}.')
+        return site.id == 40
 
     def func_require_qpcr_requisition(self, visit, **kwargs):
-        current_site = Site.objects.get_current()
-        return current_site.name == 'blantyre' or current_site.name == 'gaborone'
+        site = Site.objects.get_current()
+        if site.id == 40 and site.name != 'blantyre':
+            raise SiteError(
+                f'Expected site 40 to be "blantyre". Got {site.name}.')
+        if site.id == 10 and site.name != 'gaborone':
+            raise SiteError(
+                f'Expected site 10 to be "gaborone". Got {site.name}.')
+        return site.id == 40 or site.id == 10
