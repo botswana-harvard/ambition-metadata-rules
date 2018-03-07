@@ -24,13 +24,13 @@ class TestPredicates(TestCase):
         # copied from ambition ... may not be up to date!
         fqdn = 'ambition.clinicedc.org'
         ambition_sites = (
-            (1, 'reviewer'),
-            (10, 'gaborone'),
-            (20, 'harare'),
-            (30, 'lilongwe'),
-            (40, 'blantyre'),
-            (50, 'capetown'),
-            (60, 'kampala'),
+            (1, 'reviewer', ''),
+            (10, 'gaborone', ''),
+            (20, 'harare', ''),
+            (30, 'lilongwe', ''),
+            (40, 'blantyre', ''),
+            (50, 'capetown', ''),
+            (60, 'kampala', ''),
         )
         add_or_update_django_sites(
             apps=django_apps, sites=ambition_sites, fqdn=fqdn)
