@@ -16,7 +16,7 @@ setup(
     author_email='',
     packages=find_packages(),
     include_package_data=True,
-    url='https://github.com/botswana-harvard/ambition-metadata-rules',
+    url='https://github.com/ambition-study/ambition-metadata-rules',
     license='GPL license, see LICENSE',
     description='ambition',
     long_description=README,
