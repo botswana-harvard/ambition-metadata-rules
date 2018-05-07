@@ -124,3 +124,9 @@ class TestPredicates(TestCase):
         pc = Predicates()
         self.assertFalse(
             pc.func_require_qpcr_requisition(self.subject_visits[0]))
+
+    @override_settings(SITE_ID=50)
+    def test_qpcr_23_requisition_site_eq_cape_town(self):
+        pc = Predicates()
+        self.assertFalse(
+            pc.func_require_qpcr_requisition(self.subject_visits[0]))
