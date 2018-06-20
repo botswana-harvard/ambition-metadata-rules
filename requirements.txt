@@ -1,4 +1,6 @@
+git+https://github.com/ambition-study/ambition.git@develop#egg=ambition
 git+https://github.com/ambition-study/ambition-labs.git@develop#egg=ambition_labs
+git+https://github.com/ambition-study/ambition-rando.git@develop#egg=ambition_rando
 git+https://github.com/ambition-study/ambition-reference.git@develop#egg=ambition_reference
 git+https://github.com/ambition-study/ambition-visit-schedule.git@develop#egg=ambition_visit_schedule
 git+https://github.com/botswana-harvard/edc-appointment.git@develop#egg=edc_appointment
